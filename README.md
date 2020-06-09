@@ -1,7 +1,7 @@
 # Sequelize-with-sqlserver
 This implementations just have sqlserver, to call modals 
 
-### Se plantea usar mysql con orm sequelize para crear un servicio de APIs
+### Se plantea usar mssql con orm sequelize para crear un servicio de APIs solo para la consulta de datos.
 
 1. Iniciamos nuestro proyect en gitHub y npm init
 2. Instalar dependencias de desarrollo 
@@ -32,3 +32,22 @@ This implementations just have sqlserver, to call modals
     - [CARPETAS] config, controllers, models, routes, startup, src, middlewares, repositories, services, helpers
 8. Creamos el archivo index en la carpeta root para inicializa nuestro servidor
   index.js
+9. Creamos nuestra base de un crud en repositories (para no repetir tanto codigo)
+  base-crud.repository.js
+10. Create nuestro servicio base de un crud (para manerar errores y objetos inexistentes en la bd)
+  base-crud.service.js
+11. Create in startup
+  container.js
+
+####REST API con awilix
+##Con este patron de diseno de software nos encontramos con la sigiente funcionalidad
+1. Primero se ejecuta index.js del root, (iniciamos nuestra base de datos)
+2. Ejecutamos en el startup index.js (iniciamos nuestro servidor)
+3. Se ejecuta el container el config las rutas
+4. Al hacer una peticion
+	4.1 Se ejecuta el router
+	4.2 Se ejecuta el controller (manda a llamar al servido y espera respuesta)
+	4.3 Se ejecuta el servicio (manda a llamar al repositorio y espera respuesta)
+	4.4 Se ejecuta el repositorio y corre la peticion mandada ( retorna respuesta a servicio)
+	4.5 Recibe servicio la respuesta del repositorio (retorna respuesta a controller)
+	4.6 Recibe controller la respuesta del servicio (envia la respuesta al usuario final)
