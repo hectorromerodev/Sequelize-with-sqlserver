@@ -1,0 +1,30 @@
+{
+  "name": "sequelize-with-sqlserver",
+  "version": "1.0.0",
+  "description": "Sequelize and sql server test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hectorromerodev/Sequelize-with-sqlserver.git"
+  },
+  "keywords": [
+    "Sequelize",
+    "sqlserver",
+    "javascript",
+    "nodejs",
+    "express"
+  ],
+  "author": "Hector Romero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hectorromerodev/Sequelize-with-sqlserver/issues"
+  },
+  "homepage": "https://github.com/hectorromerodev/Sequelize-with-sqlserver#readme",
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4"
+  }
+}
