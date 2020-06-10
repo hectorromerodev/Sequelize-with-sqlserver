@@ -1,13 +1,15 @@
 # Sequelize-with-sqlserver
 This implementations just have sqlserver, to call modals 
 
-### Se plantea usar mysql con orm sequelize para crear un servicio de APIs
+### Se plantea usar mssql con orm sequelize para crear un servicio de APIs solo para la consulta de datos.
 
 1. Iniciamos nuestro proyect en gitHub y npm init
+
 2. Instalar dependencias de desarrollo 
   nodemon autosave: npm i --save-dev nodemon
    variables de entorno: npm i --save-dev dotenv
   --> npm i --save-dev nodemon dotenv
+
 3. Instalamos dependencias de produccion 
   ORM y express: npm i sequelize express
   Encriptar: npm i bcrypt
@@ -23,12 +25,46 @@ This implementations just have sqlserver, to call modals
   Swagger para documentacion: npm i swagger-ui-express 
   --> INSTALAR TODO 
     npm i sequelize express bcrypt body-parser cors dotenv jsonwebtoken mssql helmet compression express-async-errors awilix memory-cache swagger-ui-express --save
+
 4. Agregamos variables de entorno de nuestra app en la carpeta raiz
   .env
+
 5. Agregamos a .gitignore si tiene otro nombre
   *.env 
-6. Creamos carpeta src y test
+
+6. Creamos carpeta src
+
 7. Creamos carpetas con su index.js 
     - [CARPETAS] config, controllers, models, routes, startup, src, middlewares, repositories, services, helpers
+
 8. Creamos el archivo index en la carpeta root para inicializa nuestro servidor
   index.js
+
+9. 1 Agregamos en config, nuestra configuracion de la base de datos que usaremos.
+
+9. 3 Agregamos en startup index.js el inicio de nuestro servidor y el container con awilix para injection con vanilla
+
+9. 4 Agregamos en root index.js nuesto inicio de la bd y nuestro servidor lo mandamos a llamar para iniciarlo.
+
+10. Creamos nuestra base de lecturas en repositories (para no repetir tanto codigo)
+  base-crud.repository.js
+
+11. Create nuestro servicio base de un crud (para manerar errores y objetos inexistentes en la bd)
+  base-crud.service.js
+
+12. Create in startup
+  container.js
+
+## REST API con awilix
+#### Con este patron de diseno de software nos encontramos con la sigiente funcionalidad
+
+1. Primero se ejecuta index.js del root, (iniciamos nuestra base de datos)
+2. Ejecutamos en el startup index.js (iniciamos nuestro servidor)
+3. Se ejecuta el container el config las rutas
+4. Al hacer una peticion
+	4.1 Se ejecuta el router
+	4.2 Se ejecuta el controller (manda a llamar al servido y espera respuesta)
+	4.3 Se ejecuta el servicio (manda a llamar al repositorio y espera respuesta)
+	4.4 Se ejecuta el repositorio y corre la peticion mandada ( retorna respuesta a servicio)
+	4.5 Recibe servicio la respuesta del repositorio (retorna respuesta a controller)
+	4.6 Recibe controller la respuesta del servicio (envia la respuesta al usuario final)
