@@ -16,15 +16,13 @@ module.exports = function ({
     .use(cors()) // [FIX] Needed to config cors to one client can use the api
     .use(helmet())
     .use(compression());
-    
+
   apiRoutes
     .use("/home", HomeRoutes)
-    .use("/orden-de-compra", OrdenDeCompraRoutes); 
-
+    .use("/orden-de-compra", OrdenDeCompraRoutes);
 
   router
     .use("/api/v1", apiRoutes);
-  
 
   return router;
 };

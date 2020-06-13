@@ -52,7 +52,6 @@ container
     HomeRoutes: asFunction(HomeRoutes).singleton(),
     OrdenDeCompraRoutes: asFunction(OrdenDeCompraRoutes).singleton(),
 
-
   })
   // .register({// Registration of all models
 
@@ -61,5 +60,4 @@ container
     OrdenDeCompraRepository: asClass(OrdenDeCompraRepository).singleton(),
 
   });
-
 module.exports = container;

@@ -8,5 +8,4 @@ class OrdenDeCompraRepository extends BaseReadRepository {
   }
   //Aqui agregar busquedas mas especificas
 }
-
 module.exports = OrdenDeCompraRepository;
