@@ -1,16 +1,17 @@
 const Sequelize = require('sequelize');
-const { DB_NAME, DB_USER, DB_PASS, DB_SERVER_NAME, DB_INTANCE_NAME } = require('./index');
 
 const sequelize = new Sequelize(
-  DB_NAME, DB_USER, DB_PASS, {
-  dialect: 'mssql',
-  options: {
-    enableArithAbort: false,
-    trustServerCertificate: false,
-  },
-  serverName: DB_SERVER_NAME,
-  instanceName: DB_INTANCE_NAME
-});
+  process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
+    dialect: 'mssql',
+    host: process.env.DB_HOST, //This is an IP
+    dialectOptions: {
+      options: {
+        instanceName: process.env.DB_INSTANCE_NAME,
+        trustServerCertificate: true
+      },
+    }
+  }
+);
 module.exports = {
   sequelize,
   Sequelize

@@ -5,17 +5,29 @@ const server = require('./');
 const Routes = require('../routes');
 const config = require('../config');
 
-// //Services
-// const { } = require('../services');
+//Services
+const {
+  HomeService,
+  OrdenDeCompraService
 
-// //Controllers
-// const { } = require('../controllers');
+} = require('../services');
 
-// //Routes
-// const { } = require('../routes/index.routes');
+//Controllers
+const {
+  HomeController,
+  OrdenDeCompraController
+} = require('../controllers');
 
-// //Models 
-// const { } = require('../repositories');
+//Routes
+const {
+  HomeRoutes,
+  OrdenDeCompraRoutes
+} = require('../routes/index.routes');
+
+//repositories
+const {
+  OrdenDeCompraRepository
+} = require('../repositories');
 
 const container = createContainer();
 
@@ -23,23 +35,31 @@ const container = createContainer();
 container
   .register({// registration of Initial configuration
     server: asClass(server).singleton(),
-    // router: asFunction(Routes).singleton(),
+    router: asFunction(Routes).singleton(),
     config: asValue(config)
   })
   .register({// Registrations of all services
+    HomeService: asClass(HomeService).singleton(),
+    OrdenDeCompraService: asClass(OrdenDeCompraService).singleton(),
 
   })
   .register({// Registration of all controllers
+    HomeController: asClass(HomeController.bind(HomeController)).singleton(),
+    OrdenDeCompraController: asClass(OrdenDeCompraController.bind(OrdenDeCompraController)).singleton(),
 
   })
   .register({// Registration of all routes
+    HomeRoutes: asFunction(HomeRoutes).singleton(),
+    OrdenDeCompraRoutes: asFunction(OrdenDeCompraRoutes).singleton(),
+
 
   })
-  .register({// Registration of all models
+  // .register({// Registration of all models
 
-  })
+  // })
   .register({// egistration of all repositories
-    
+    OrdenDeCompraRepository: asClass(OrdenDeCompraRepository).singleton(),
+
   });
 
 module.exports = container;
